@@ -1,0 +1,5 @@
+{
+  "name": "Aplikasi Manajemen Data Warga",
+  "description": "Sebuah aplikasi web untuk mengelola dan mendata informasi warga secara lengkap. Dilengkapi dengan fitur tambah, edit, hapus, dan pencarian data, serta kemampuan untuk menghasilkan data contoh menggunakan AI.",
+  "requestFramePermissions": []
+}
