@@ -1,6 +1,6 @@
 import { useState, useCallback, useEffect } from 'react';
 import { Citizen } from '../types';
-import { getCitizens, createCitizen, updateCitizenApi, deleteCitizenApi, generateDummyCitizens } from '../services/geminiService';
+import { getCitizens, createCitizen, updateCitizenApi, deleteCitizenApi } from '../services/geminiService';
 
 export const useCitizens = () => {
     const [citizens, setCitizens] = useState<Citizen[]>([]);
@@ -64,25 +64,12 @@ export const useCitizens = () => {
             }
         }
     }, [fetchCitizens]);
-
-    const generateAndAddCitizens = useCallback(async (count: number) => {
-        setIsLoading(true);
-        setError(null);
-        try {
-            await generateDummyCitizens(count);
-            await fetchCitizens(); // Refetch
-        } catch (err) {
-            setError(err instanceof Error ? err.message : "An unknown error occurred during AI generation.");
-            setIsLoading(false);
-        }
-    }, [fetchCitizens]);
     
     return {
         citizens,
         addCitizen,
         updateCitizen,
         deleteCitizen,
-        generateAndAddCitizens,
         isLoading,
         error
     };

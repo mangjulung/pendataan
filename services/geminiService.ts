@@ -46,15 +46,3 @@ export const deleteCitizenApi = async (id: string): Promise<void> => {
         throw new Error(errorText || 'Failed to delete citizen');
     }
 };
-
-export const generateDummyCitizens = async (count: number): Promise<void> => {
-    const response = await fetch(`${API_BASE_URL}/generate`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ count }),
-    });
-     if (!response.ok) {
-        const errorText = await response.text();
-        throw new Error(errorText || 'Failed to generate citizens');
-    }
-};

@@ -1,13 +1,12 @@
 # Aplikasi Manajemen Data Warga
 
-Aplikasi web modern untuk mengelola dan mendata informasi warga secara lengkap. Dibangun di atas platform Cloudflare Pages dan D1, serta dilengkapi dengan fitur AI untuk menghasilkan data contoh menggunakan Gemini API.
+Aplikasi web modern untuk mengelola dan mendata informasi warga secara lengkap. Dibangun di atas platform Cloudflare Pages dan D1 untuk memastikan performa tinggi dan keandalan.
 
 ## Fitur Utama
 
 -   **CRUD Lengkap**: Tambah, lihat, edit, dan hapus data warga.
 -   **Penyimpanan Permanen**: Data disimpan secara aman dan persisten di database Cloudflare D1.
 -   **Backend Serverless**: Logika backend ditangani oleh Cloudflare Functions yang aman dan skalabel.
--   **AI Data Generator**: Hasilkan data warga contoh secara acak dengan satu klik, didukung oleh Google Gemini.
 -   **Pencarian & Filter**: Cari data berdasarkan nama, NIK, alamat, serta filter berdasarkan jenis kelamin dan status perkawinan.
 -   **Paginasi**: Navigasi data yang banyak dengan mudah menggunakan sistem halaman.
 -   **UI Responsif**: Tampilan yang optimal di berbagai perangkat, dari desktop hingga mobile.
@@ -17,7 +16,6 @@ Aplikasi web modern untuk mengelola dan mendata informasi warga secara lengkap. 
 -   **Frontend**: React.js, Tailwind CSS
 -   **Backend**: Cloudflare Pages Functions
 -   **Database**: Cloudflare D1
--   **AI**: Google Gemini API
 
 ---
 
@@ -35,7 +33,6 @@ Sebelum memulai, pastikan Anda memiliki:
     ```bash
     npm install -g wrangler
     ```
--   **Google Gemini API Key**: Dapatkan API Key Anda dari [Google AI Studio](https://aistudio.google.com/app/apikey).
 
 ### 2. Penyiapan Proyek
 
@@ -55,19 +52,7 @@ Sebelum memulai, pastikan Anda memiliki:
     wrangler d1 execute nama-database-warga --file=./schema.sql
     ```
 
-### 3. Konfigurasi Environment
-
-Aplikasi ini membutuhkan API Key untuk fitur AI. Kunci ini harus disimpan sebagai environment variable yang aman.
-
-#### Untuk Pengembangan Lokal:
-1.  Buat file bernama `.dev.vars` di root direktori proyek.
-2.  Tambahkan API Key Gemini Anda ke dalam file tersebut:
-    ```ini
-    API_KEY="MASUKKAN_GEMINI_API_KEY_ANDA_DI_SINI"
-    ```
-    *File `.dev.vars` bersifat rahasia dan tidak boleh di-commit ke Git.*
-
-### 4. Menjalankan Secara Lokal
+### 3. Menjalankan Secara Lokal
 
 1.  **Jalankan Server Pengembangan**: Gunakan Wrangler untuk menjalankan aplikasi secara lokal. Perintah ini akan melayani frontend, menjalankan backend function, dan menghubungkannya dengan database D1 yang sudah Anda buat.
     ```bash
@@ -79,7 +64,7 @@ Aplikasi ini membutuhkan API Key untuk fitur AI. Kunci ini harus disimpan sebaga
 
 2.  **Buka Aplikasi**: Buka browser dan akses `http://localhost:8788` atau alamat lain yang ditampilkan di terminal.
 
-### 5. Deployment ke Cloudflare Pages
+### 4. Deployment ke Cloudflare Pages
 
 1.  **Buat Proyek di Cloudflare Pages**:
     -   Login ke dashboard Cloudflare.
@@ -91,18 +76,13 @@ Aplikasi ini membutuhkan API Key untuk fitur AI. Kunci ini harus disimpan sebaga
     -   Seret (drag and drop) seluruh folder proyek Anda ke area upload.
     -   Klik **Deploy site**.
 
-3.  **Konfigurasi Binding Database & Environment Variable**:
+3.  **Konfigurasi Binding Database**:
     -   Setelah deployment pertama selesai, masuk ke pengaturan proyek Pages Anda.
     -   Pilih tab **Settings** > **Functions**.
     -   **D1 database bindings**:
         -   Klik **Add binding**.
         -   Variable name: `DB`
         -   D1 database: Pilih database D1 yang Anda buat sebelumnya (`nama-database-warga`).
-    -   **Environment variables (production)**:
-        -   Klik **Add variable**.
-        -   Variable name: `API_KEY`
-        -   Value: Masukkan Gemini API Key Anda.
-        -   **PENTING**: Klik **Encrypt** untuk menyimpan kunci ini secara aman.
     -   Klik **Save**. Perubahan ini akan memicu redeployment otomatis dengan konfigurasi baru.
 
-Setelah deployment selesai, aplikasi Anda akan live di URL proyek Pages Anda (contoh: `manajemen-warga.pages.dev`) dan terhubung sepenuhnya dengan database D1 dan Gemini API.
+Setelah deployment selesai, aplikasi Anda akan live di URL proyek Pages Anda (contoh: `manajemen-warga.pages.dev`) dan terhubung sepenuhnya dengan database D1.
